@@ -32,12 +32,12 @@ const userSchema : Schema<UserType> = new Schema({
         required : true,
         unique : true,
         trim : true,
-        lowercase : true
+        lowercase : true,
+        match : /@/
     },
     password : {
         type : String,
         required : true,
-        match : /@/
     },
     isAdmin : {
         type : Boolean,

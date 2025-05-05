@@ -4,13 +4,16 @@ const app = express();
 
 const port : number | string = process.env.PORT || 4000;
 
+// all middleWare
+app.use(express.json());
+
 // database connection 
 import dbConnect from './database-connect/dbConnect';
 dbConnect();
 
-app.get('/' , (req : Request , res : Response) => {
-    res.send("Hello World");
-})
+// all user routes
+import userRouter from './routes/userRoute';
+app.use('/api/v1/user' , userRouter);
 
 app.listen(port , () => {
     console.log(`app listening in ${port} port`)

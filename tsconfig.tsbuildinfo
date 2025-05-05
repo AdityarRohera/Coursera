@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/database-connect/dbconnect.ts"],"version":"5.8.3"}
+{"root":["./src/index.ts","./src/models/coursemodel.ts","./src/models/purchasemodel.ts","./src/models/usermodel.ts","./src/controllers/usercontroller.ts","./src/database-connect/dbconnect.ts","./src/middleware/auth.ts","./src/routes/userroute.ts"],"version":"5.8.3"}
