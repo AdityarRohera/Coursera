@@ -14,7 +14,9 @@ const dbConnect_1 = __importDefault(require("./database-connect/dbConnect"));
 (0, dbConnect_1.default)();
 // all user routes
 const userRoute_1 = __importDefault(require("./routes/userRoute"));
+const adminRoute_1 = __importDefault(require("./routes/adminRoute"));
 app.use('/api/v1/user', userRoute_1.default);
+app.use('/api/v1/admin', adminRoute_1.default);
 app.listen(port, () => {
     console.log(`app listening in ${port} port`);
 });

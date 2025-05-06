@@ -8,7 +8,9 @@ import { userAuth } from '../middleware/auth';
 userRouter.post('/signup' , userSignUp);
 userRouter.post('/signin' , userSignin);
 
+// middleware here
 userRouter.use(userAuth);
+
 userRouter.get('/courses' , getCourses);
 
 export default userRouter;

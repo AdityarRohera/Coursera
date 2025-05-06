@@ -3,18 +3,21 @@ const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
 
  export interface AuthenticatedRequest extends Request {
-    userId?: string;  // or number, depending on your token
+    user?: {
+        userId : string,
+        isAdmin : boolean
+    };  // or number, depending on your token
   }
 
 export const userAuth = async(req:AuthenticatedRequest , res:Response ,next:NextFunction) : Promise<void> => {
     try{
-
         const {token} = req.headers;
+        console.log("inside userAuth -> " , token);
 
         if(!token){
             res.status(409).send({
                 status: "fail",
-                message: "signin up"
+                message: "signin in"
             })
             return;
         }
@@ -31,7 +34,7 @@ export const userAuth = async(req:AuthenticatedRequest , res:Response ,next:Next
         }
 
         // token verified
-        req.userId = tokenVerification.userId;
+        req.user = tokenVerification;
         next();
 
     }catch(e:unknown){
@@ -50,3 +53,19 @@ export const userAuth = async(req:AuthenticatedRequest , res:Response ,next:Next
         })
       }
 }
+
+export const adminOnly = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
+    const isAdmin = req.user?.isAdmin;
+    console.log("inside adminOnly ->", isAdmin);
+
+    if (!isAdmin) {
+        res.status(403).send({
+            status: "fail",
+            message: "This is a protected route for admins only"
+        });
+        return;
+    }
+
+    console.log("Admin confirmed, proceeding...");
+    next();
+};

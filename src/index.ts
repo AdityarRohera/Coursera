@@ -13,7 +13,9 @@ dbConnect();
 
 // all user routes
 import userRouter from './routes/userRoute';
+import adminRouter from './routes/adminRoute';
 app.use('/api/v1/user' , userRouter);
+app.use('/api/v1/admin' , adminRouter)
 
 app.listen(port , () => {
     console.log(`app listening in ${port} port`)

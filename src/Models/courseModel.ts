@@ -1,8 +1,7 @@
 import mongoose , {Schema , Document} from "mongoose";
-const {ObjectId} = Schema;
 
 interface courseType extends Document {
-    courseUrl : string,
+    courseUrl? : string,
     courseHeading : string,
     courseSubHeading : string,
     coursePrice : number,
@@ -17,7 +16,8 @@ const courseSchema : Schema<courseType> = new Schema({
     courseUrl : {
         type : String,
         data : Buffer,
-        required : true
+        default : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMBqlZXu4ShbTsM39by9m28-pKrN5YJWZOAA&s",
+        // required : true,
     },
     courseHeading : {
         type : String,
